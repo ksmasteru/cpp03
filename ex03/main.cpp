@@ -1,11 +1,9 @@
-#include "ClapTrap.hpp"
-#include "ScavTrap.hpp"
+#include "DiamondTrap.hpp"
 
 int main()
 {
-    std::string name = "robot";
-    ClapTrap robot(name);
-    ScavTrap kali(name);
-    kali.guardGate();
-    kali.beRepaired(50);
+    DiamondTrap hi("HOLa");
+    hi.attack("gol");
+    hi.takeDamage(20);
+    return (0);
 }

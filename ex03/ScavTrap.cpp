@@ -28,7 +28,6 @@ ScavTrap&   ScavTrap::operator= (const ScavTrap& rhs)
         return (*this);
     ClapTrap::operator=(rhs);
     return (*this);
-    
 }
 
 void    ScavTrap::guardGate()
@@ -39,4 +38,16 @@ void    ScavTrap::guardGate()
 ScavTrap::~ScavTrap()
 {
     std::cout << "ScavTrap " << this->_name << " Destructor called" << std::endl;
+}
+
+void ScavTrap::attack(const std::string& target)
+{
+    if (this->_energyPoints > 0 && this->_hitPoints > 0)
+    {
+        std::cout << "ScavTrap " << this->_name << " attacks " << target << " causing " << 
+            this->_attackDamage << " points of damage!" << std::endl;
+        this->_energyPoints--;
+    }
+    else
+        std::cout << "insufficient energyPoints/healthPoints to perform attack operation for " << this->_name << std::endl;
 }

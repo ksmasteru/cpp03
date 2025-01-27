@@ -3,17 +3,17 @@
 FragTrap::FragTrap() : ClapTrap()
 {
     this->_hitPoints = 100;
-    this->_energyPoints = 100;
+    this->_energyPoints = 100; 
     this->_attackDamage = 30;
     std::cout << "FragTrap constructor for " << this->_name << " has been called" << std::endl;
 }
 
 FragTrap::FragTrap(std::string name) : ClapTrap(name)
 {
-    std::cout << "FragTrap constructor for " << name << " has been called" << std::endl;
     this->_hitPoints = 100;
     this->_energyPoints = 100;
     this->_attackDamage = 30;
+    std::cout << "FragTrap constructor for " << name << " has been called" << std::endl;
 }
 
 FragTrap::FragTrap(const FragTrap& rhs) : ClapTrap(rhs)
@@ -23,9 +23,9 @@ FragTrap::FragTrap(const FragTrap& rhs) : ClapTrap(rhs)
 
 FragTrap& FragTrap::operator= (const FragTrap& rhs)
 {
+    std::cout << "FragTrap assignement operator called" << std::endl;
     if (this == &rhs)
         return (*this);
-    //std::cout << "FragTrap assignement operator called" << std::endl;
     ClapTrap::operator=(rhs);
     return (*this);
 }
@@ -49,5 +49,5 @@ void FragTrap::attack(const std::string& target)
 
 FragTrap::~FragTrap()
 {
-    std::cout << "FragTrap " << this->_name << " has been destroyed!" << std::endl;
+     std::cout << "FragTrap " << this->_name << " has been destroyed!" << std::endl;
 }

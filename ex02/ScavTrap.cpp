@@ -1,16 +1,34 @@
 #include "ScavTrap.hpp"
 #include <string>
 
-/*
-Because you can never have enough ClapTraps, you will now create a derived robot.
-It will be named ScavTrap and will inherit the constructors and destructor from ClapTrap. However, its constructors, destructor and attack() will print different messages.
-After all, ClapTraps are aware of their individuality.
-*/
-ScavTrap::ScavTrap(const std::string& name) : ClapTrap(name){
-    this->_health = 100;
+ScavTrap::ScavTrap() : ClapTrap()
+{
+    this->_hitPoints = 100;
     this->_energyPoints = 50;
-    this->_Attackdamage = 20;
-    std::cout << "ScavTrap " << name << " has been created!" << std::endl;
+    this->_attackDamage = 20;
+    std::cout << "ScavTrap default constructor" << std::endl;
+}
+
+ScavTrap::ScavTrap(const std::string& name) : ClapTrap(name)
+{
+    this->_hitPoints = 100;
+    this->_energyPoints = 50;
+    this->_attackDamage = 20;
+    std::cout << "ScavTrap " << name << " constructor called" << std::endl;
+}
+
+ScavTrap::ScavTrap(const ScavTrap& rhs) : ClapTrap(rhs)
+{
+    std::cout << "ScavTrap copy constructor called" << std::endl;
+}
+
+ScavTrap&   ScavTrap::operator= (const ScavTrap& rhs)
+{
+    if (this == &rhs)
+        return (*this);
+    ClapTrap::operator=(rhs);
+    std::cout << "ScavTrap copy assignment operator" << std::endl;
+    return (*this);
 }
 
 void    ScavTrap::guardGate()
@@ -21,4 +39,16 @@ void    ScavTrap::guardGate()
 ScavTrap::~ScavTrap()
 {
     std::cout << "ScavTrap " << this->_name << " Destructor called" << std::endl;
+}
+
+void ScavTrap::attack(const std::string& target)
+{
+    if (this->_energyPoints > 0 && this->_hitPoints > 0)
+    {
+        std::cout << "ScavTrap " << this->_name << " attacks " << target << " causing "
+            << this->_attackDamage << " points of damage!" << std::endl;
+        this->_energyPoints--;
+    }
+    else
+        std::cout << "insufficient energyPoints/healthPoints to perform attack operation for " << this->_name << std::endl;
 }

@@ -8,4 +8,5 @@ int main()
     ScavTrap kali(name);
     kali.guardGate();
     kali.beRepaired(50);
+kali.attack("radom");
 }
